@@ -16,7 +16,10 @@ class ConnectionToServer(mysql.connector.MySQLConnection):
     def connect_to_server(self):
         try:
             self.connect(**self.obj_connect)
-            print(f'Conexão com a base de dados [{self.database}] estabelecida')
+            if self.is_connected():
+                print(f'Conexão com a base de dados [{self.database}] estabelecida')
+            else:
+                print('Conexão com a base de dados não estabelecida')
         except connector.Error as e:
             print(f'Erro ao tentar realizar uma conexão com o servidor {e}')
 

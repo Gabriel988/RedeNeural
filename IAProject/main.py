@@ -1,6 +1,6 @@
-from Connections.Querys import Requests
+from Repositorys.Pessoas import PessoasRepositorys
 
-teste = Requests().get_all("Pessoa")
+teste = PessoasRepositorys().get_one()
 
 
 
