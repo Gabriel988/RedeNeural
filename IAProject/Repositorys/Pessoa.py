@@ -3,7 +3,7 @@ from Models.Pessoa import Pessoa
 from Mapper.Mapeamento import Map
 
 
-class PessoasRepository:
+class PessoaRepository:
 
     def __init__(self):
         self.conexao = ConnectionToServer()
@@ -16,7 +16,6 @@ class PessoasRepository:
             cursor.execute(query)
             res = cursor.fetchall()
             list_pessoa = Map().map_all(model=Pessoa, list_cursor=res)
-            print('Query realizada com sucesso!')
         except Exception as e:
             print(f"Ocorreu um erro na get_all: {e}")
             list_pessoa = None
@@ -34,7 +33,6 @@ class PessoasRepository:
             cursor.execute(query, {'id': id})
             res = cursor.fetchone()
             pessoa = Map().map_one(model=Pessoa, cursor=res)
-            print('Query realizada com sucesso!')
         except Exception as e:
             print(f"Ocorreu um erro na get_by_Id: {e}")
             pessoa = None

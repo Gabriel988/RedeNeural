@@ -9,3 +9,7 @@ class Financeiro:
         self.emprestimos_pagos = kwargs.get('emprestimos_feitos')
         self.nome_sujo = kwargs.get('nome_sujo')
         self.score_serasa = kwargs.get('score_serasa')
+
+    def __str__(self):
+        return [self.id, self.id_pessoa, self.receita, self.despesa, self.emprestimos_feitos, self.emprestimos_pagos
+                , self.nome_sujo, self.score_serasa]

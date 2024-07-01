@@ -1,13 +1,13 @@
-from Repositorys.Pessoas import PessoasRepository
+from Repositorys.Pessoa import PessoaRepository
 from Repositorys.Financeiro import FinanceiroRepository
-from tabulate import tabulate
+from Models.Pessoa import Pessoa
+from Models.Financeiro import Financeiro
+from TableManeger.Tabela import Tabela
 
-list_pessoa = PessoasRepository().get_all()
-list_financeiro = FinanceiroRepository().get_all()
-cabecalho_pessoa = ['id', 'nome', 'idade', 'sexo', 'documento']
 
-data = [cabecalho_pessoa]
-for i in list_pessoa:
-    data.append(i.__str__())
+header_pessoa = list(Pessoa().__dict__.keys())
+header_financeiro = list(Financeiro().__dict__.keys())
 
-print(tabulate(data, headers='firstrow', tablefmt="grid"))
+query_pessoa = PessoaRepository().get_all()
+Tabela().render_table(header_pessoa, query_pessoa)
+
