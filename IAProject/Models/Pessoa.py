@@ -6,3 +6,5 @@ class Pessoa:
         self.sexo = kwargs.get('sexo')
         self.documento = kwargs.get('documento')
 
+    def __str__(self):
+        return [self.id, self.nome, self.idade, self.sexo, self.documento]
