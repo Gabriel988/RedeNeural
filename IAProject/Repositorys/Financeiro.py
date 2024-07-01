@@ -1,9 +1,9 @@
 from Connections.MySQLConnective import ConnectionToServer
-from Models.Pessoa import Pessoa
+from Models.Financeiro import Financeiro
 from Mapper.Mapeamento import Map
 
 
-class PessoasRepository:
+class FinanceiroRepository:
 
     def __init__(self):
         self.conexao = ConnectionToServer()
@@ -12,34 +12,34 @@ class PessoasRepository:
         self.conexao.connect_to_server()
         cursor = self.conexao.cursor()
         try:
-            query = "SELECT * FROM Pessoa"
+            query = "SELECT * FROM Financeiro"
             cursor.execute(query)
             res = cursor.fetchall()
-            list_pessoa = Map().map_all(model=Pessoa, list_cursor=res)
+            list_financeiro = Map().map_all(model=Financeiro, list_cursor=res)
             print('Query realizada com sucesso!')
         except Exception as e:
             print(f"Ocorreu um erro na get_all: {e}")
-            list_pessoa = None
+            list_financeiro = None
         finally:
             cursor.close()
             self.conexao.close_connection()
             print(f'Conexão com a base de dados {self.conexao.database} encerrada')
-        return list_pessoa
+        return list_financeiro
 
     def get_by_Id(self, id):
         self.conexao.connect_to_server()
         cursor = self.conexao.cursor()
         try:
-            query = "SELECT * FROM Pessoa WHERE Id = %(id)s"
+            query = "SELECT * FROM Financeiro WHERE Id = %(id)s"
             cursor.execute(query, {'id': id})
             res = cursor.fetchone()
-            pessoa = Map().map_one(model=Pessoa, cursor=res)
+            financeiro = Map().map_one(model=Financeiro, cursor=res)
             print('Query realizada com sucesso!')
         except Exception as e:
             print(f"Ocorreu um erro na get_by_Id: {e}")
-            pessoa = None
+            financeiro = None
         finally:
             cursor.close()
             self.conexao.close_connection()
             print(f'Conexão com a base de dados {self.conexao.database} encerrada')
-        return pessoa
+        return financeiro
