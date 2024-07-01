@@ -1,14 +1,21 @@
-from mysql.connector.cursor import MySQLCursor
-
 
 class Map:
-    def __init__(self):
-        self.entity = None,
-        self.model = None
 
-    def map_one(self, model, cursor=MySQLCursor):
+    def map_one(self, model=object, cursor=tuple):
         try:
-            teste = model(**cursor)
-
+            keys = model().__dict__.keys()
+            obj_dict = dict(zip(keys, cursor))
+            return model(**obj_dict)
         except Exception as e:
             print('Erro ao mapear entidade')
+
+    def map_all(self, model=object, list_cursor=list):
+        try:
+            list_model = []
+            for i in list_cursor:
+                keys = model().__dict__.keys()
+                obj_dict = dict(zip(keys, i))
+                list_model.append(model(**obj_dict))
+            return list_model
+        except Exception as e:
+            print('Erro ao mapear todas as entidades')
