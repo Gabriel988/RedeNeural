@@ -46,3 +46,11 @@ class FinanceiroResumoRepository:
         self.conexao.connect_to_server()
         cursor = self.conexao.cursor()
         try:
+            cursor.callproc('RiskAnalysis')
+        except Exception as e:
+            print(f"Ocorreu um erro na risk_analysis: {e}")
+        finally:
+            cursor.close()
+            self.conexao.close_connection()
+            print(f'Conexão com a base de dados {self.conexao.database} encerrada')
+
