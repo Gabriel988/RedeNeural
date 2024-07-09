@@ -16,5 +16,11 @@ query_financeiro_Resumo = FinanceiroResumoRepository().get_all()
 list_keys = FinanceiroResumo().__dict__.keys()
 
 val_matriz = Tabela().extractor_to_matriz(query_financeiro_Resumo, list_keys, True)
-Tabela().render_table(header_financeiro_resumo, val_matriz)
+#Tabela().render_table(header_financeiro_resumo, val_matriz)
 
+res = 35.00
+
+if res > 50:
+    print("Risco baixo")
+elif res < 50:
+    print("Risco Alto")
